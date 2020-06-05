@@ -10,6 +10,7 @@ quote_text: 'blah'
 quote_author: 'blah'
 images: ['../images/blog-6.jpg', '../images/blog-8.jpg', '../images/blog-2.jpg']
 link: 'blah'
+is_featured: true
 tags: 
     - gatsby
     - markdown
