@@ -1,46 +1,34 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
   siteMetadata: {
-    title: `TikTok Collab`,
-    titleTemplate: `Creative React Gatsby Blog Template`,
-    description: `Kick off your next, great blogging website with this Gatsby template. This template ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    image: 'banner.jpg',
-    siteUrl: "https://tiktokcollab.com/",
-    mailchimp_endpoint: "https://gmail.us19.list-manage.com/subscribe/post?u=9fac302a213ab56195e9125e7&amp;id=a30904c5f3",
-    disqus_shortname: "thern-1",
-    getform_url: "https://getform.io/f/7a6695a7-c8e3-442c-bc2f-d46d3b9a535e",
-    contact: {
-      social: {
-        facebook: 'https://facebook.com',
-        twitter: 'https://twitter.com',
-        instagram: 'https://www.instagram.com/ryanwardphotos/',
-        linkedin: 'https://linkedin.com',
-        youtube: 'https://www.youtube.com/channel/UCv09vbalH7G--ILCkG3l28Q',
-      }
-    }
-  },
-  mapping: {
-    "MarkdownRemark.frontmatter.author": `AuthorsJson.name`,
+    title: `tiktokcollab`,
+    author: `Ryan Ward`,
+    about: `This website is a collaborative effort between myself and people on TikTok. I post videos on TikTok and wanted to get them involved in a project to build a website together. I am taking all comments on my TikToks and implementing them into this website. Follow me on TikTok @_ryanward if you want to participate in this community driven project.`,
+    description: `A Collaborative Effort from TikTok Followers`,
+    siteUrl: `https://tiktokcollab.com`,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
-    `gatsby-transformer-json`,
-    `gatsby-plugin-styled-components`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    `gatsby-plugin-sitemap`,
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `gatsby-plugin-styled-components`,
       options: {
-        name: `images`,
-        path: `${__dirname}/src/assets/img`,
+        minify: false, // Breaks styles if not set to false
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `data`,
-        path: `${__dirname}/src/data/`,
+        path: `${__dirname}/content/blog`,
+        name: `blog`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/assets`,
+        name: `assets`,
       },
     },
     {
@@ -50,107 +38,95 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 1920
+              maxWidth: 590,
+              linkImagesToOriginal: true,
             },
+          },
+          {
+            resolve: `gatsby-remark-responsive-iframe`,
+            options: {
+              wrapperStyle: `margin-bottom: 1.0725rem`,
+            },
+          },
+          {
+            resolve: `gatsby-remark-katex`,
+            options: {
+              // Add any KaTeX options from https://github.com/KaTeX/KaTeX/blob/master/docs/options.md here
+              strict: `ignore`,
+            },
+          },
+          {
+            resolve: `gatsby-remark-mermaid`,
+          },
+          {
+            resolve: `gatsby-remark-prismjs`,
+          },
+          {
+            resolve: `gatsby-remark-prismjs`,
+          },
+
+          {
+            resolve: `gatsby-remark-copy-linked-files`,
+          },
+          {
+            resolve: `gatsby-remark-smartypants`,
           },
         ],
       },
+    },
+    {
+      resolve: `gatsby-transformer-sharp`,
+    },
+    {
+      resolve: `gatsby-plugin-sharp`,
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        //trackingId: `ADD YOUR TRACKING ID HERE`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-feed`,
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `StoryHub - Personal Blog Minimal`,
+        short_name: `StoryHub`,
+        start_url: `/`,
+        background_color: `#ffffff`,
+        theme_color: `#663399`,
+        display: `minimal-ui`,
+        icon: `content/assets/favicon.png`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-offline`,
+    },
+    {
+      resolve: `gatsby-plugin-react-helmet`,
+    },
+    {
+      resolve: `gatsby-plugin-typescript`,
+    },
+    {
+      resolve: `gatsby-plugin-lodash`,
     },
     {
       resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
         fonts: [
           {
-            family: `Montserrat`,
-            subsets: [`latin`],
-            variants: [`300`, `400`, `500`, `600`, `700`, `900`]
+            family: `Poppins`,
+            variants: [`300`, `400`, `500`, `600`, `700`],
           },
           {
-            family: `Marck Script`,
-            subsets: [`latin`],
-            variants: [`400`]
+            family: `Fira Sans`,
+            variants: [`100`, `300`, `400`, `500`, `600`, `700`],
           },
-          {
-            family: `Dancing Script`,
-            subsets: [`latin`],
-            variants: [`400`, `500`, `600`, `700`]
-          }
         ],
       },
     },
-    {
-      resolve: `gatsby-source-instagram`,
-      options: {
-        // type: `hashtag`,
-        // hashtag: `naturesbeauty`,
-        username: `rainbowit10`,
-        // access_token: "EAAJfJNguJz4BAI3u9hxFCVJUwVgT39AzmO7nyRAPPEhHEiyyElx7cYSxbv5hHWMyopFM00R0wh7wfoghe7vfePBteFp9pKKkDJKdAPl0b1fKTkWu2s9nYhiYrxHnq28n3mZC4HUSYwxJeaurinARaOqxOzaVfwlBJZBEMApAZDZD",
-        // instagram_id: "rainbowit5"
-      },
-    },
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `TikTok Collab`,
-        short_name: `TikTok Collab`,
-        start_url: `/`,
-        background_color: `#333333`,
-        theme_color: `#59afca`,
-        display: `standalone`,
-        "icons": [
-          {
-            "src": "/icons/icon-72x72.png",
-            "sizes": "72x72",
-            "type": "image/png"
-          },
-          {
-            "src": "/icons/icon-96x96.png",
-            "sizes": "96x96",
-            "type": "image/png"
-          },
-          {
-            "src": "/icons/icon-128x128.png",
-            "sizes": "128x128",
-            "type": "image/png"
-          },
-          {
-            "src": "/icons/icon-144x144.png",
-            "sizes": "144x144",
-            "type": "image/png"
-          },
-          {
-            "src": "/icons/icon-152x152.png",
-            "sizes": "152x152",
-            "type": "image/png"
-          },
-          {
-            "src": "/icons/icon-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-          },
-          {
-            "src": "/icons/icon-384x384.png",
-            "sizes": "384x384",
-            "type": "image/png"
-          },
-          {
-            "src": "/icons/icon-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png"
-          }
-        ]
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-robots-txt',
-      options: {
-        host: "https://tiktokcollab.com/",
-        sitemap: "https://tiktokcollab.com/sitemap.xml",
-        policy: [{ userAgent: '*', allow: '/' }]
-      }
-    },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    `gatsby-plugin-offline`,
   ],
-}
+};
