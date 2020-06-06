@@ -92,8 +92,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `StoryHub - Personal Blog Minimal`,
-        short_name: `StoryHub`,
+        name: `tiktokcollab - Ryan Ward`,
+        short_name: `tiktokcollab`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,
