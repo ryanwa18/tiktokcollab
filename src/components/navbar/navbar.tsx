@@ -25,6 +25,10 @@ const MenuItems = [
     label: 'Home',
     url: '/',
   },
+  {
+    label: 'Follower Suggestions',
+    url: 'https://comments.tiktokcollab.com',
+  },
 ];
 
 const Navbar: React.FunctionComponent<NavbarProps> = ({
